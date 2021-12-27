@@ -1,0 +1,37 @@
+server:
+  port: 8082
+jwt:
+  secret: secret
+spring:
+  application:
+    name: gateway
+  cloud:
+    consul:
+      host: 121.183.228.40
+      port: 8500
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allow-credentials: true   #??
+            allowedHeaders:
+              - x-requested-with
+              - Authorization
+              - content-type
+              - credential
+              - X-AUTH-TOKEN
+              - X-CSRF-TOKEN
+            allowedMethods:
+              - POST
+              - GET
+              - PUT
+              - DELETE
+      discovery:
+        locator:
+          enabled: true
+logging:
+  level:
+    com:
+      ccwlab:
+        gateway: DEBUG
