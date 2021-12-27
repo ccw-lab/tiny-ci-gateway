@@ -46,13 +46,14 @@ public class GatewayApplication {
 						.filters(f ->
 								f.rewritePath("/logs$", ""))
 						.uri(discoveryClient.getInstances("controller").get(0).getUri()))
-				.route("secured",r -> r.path("/works/*/logs")
-						.filters(f ->
-								f.filter(authFilter).rewritePath("/logs$", ""))
-						.uri(discoveryClient.getInstances("controller").get(0).getUri()))
 				.route("secured",r -> r.path("/**")
 						.filters(f -> f.filter(authFilter))
 						.uri(discoveryClient.getInstances("main").get(0).getUri()))
+//				.route("secured",r -> r.path("/works/*/logs")
+//						.filters(f ->
+//								f.filter(authFilter).rewritePath("/logs$", ""))
+//						.uri(discoveryClient.getInstances("controller").get(0).getUri()))
+
 //				.route("host_route", r -> r.host("*.myhost.org")
 //						.uri("http://httpbin.org"))
 //				.route("rewrite_route", r -> r.host("*.rewrite.org")
